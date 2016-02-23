@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<root>
+  <devicevendordef>
+    <vendorname>PFU</vendorname>
+    <vendorid>0x0853</vendorid>
+  </devicevendordef>
+  <deviceproductdef>
+    <productname>HHKB</productname>
+    <productid>0x0100</productid>
+  </deviceproductdef>
+
+  <item>
+    <name>HHKB Keyboard Layout</name>
+    <appendix>Change Eject(Fn+F) to MUSIC_PLAY</appendix>
+    <appendix>Change F13(PSc/SRq) to MUSIC_PREV</appendix>
+    <appendix>Change F14(ScrLk) to MUSIC_NEXT</appendix>
+    <appendix>Change F15(Pus/Brk) to Control+Shift+Powert(Sleep displays)</appendix>
+    <identifier>private.HHKB_LAYOUT</identifier>
+    <block>
+      <device_only>
+        DeviceVendor::PFU, DeviceProduct::HHKB
+      </device_only>
+      <autogen>__ConsumerToConsumer__ ConsumerKeyCode::EJECT, ConsumerKeyCode::MUSIC_PLAY</autogen>
+      <autogen>__KeyToConsumer__ KeyCode::F13, ConsumerKeyCode::MUSIC_PREV</autogen>
+      <autogen>__KeyToConsumer__ KeyCode::F14, ConsumerKeyCode::MUSIC_NEXT</autogen>
+      <autogen>
+        __KeyToKey__ KeyCode::F15,
+        ConsumerKeyCode::POWER, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L
+      </autogen>
+    </block>
+  </item>
+</root>
