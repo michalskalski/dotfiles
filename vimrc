@@ -9,7 +9,12 @@ set nowrap                      " don't wrap lines
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+
+if has("patch-7.4.710")
+    set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+else
+    set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+endif
 
 "" Searching
 set hlsearch                    " highlight matches
