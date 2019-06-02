@@ -1,3 +1,9 @@
+"" vim-plug
+try
+  source ~/.vim/plugrc.vim
+catch
+endtry
+
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
 set encoding=utf-8
@@ -6,24 +12,31 @@ filetype plugin indent on       " load file type plugins + indentation
 
 "" Whitespace
 set nowrap                      " don't wrap lines
-set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set tabstop=2 shiftwidth=2      " a tab is two spaces
 set expandtab                   " use spaces, not tabs (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
-
 if has("patch-7.4.710")
-    set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 else
-    set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 endif
 
 "" Searching
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
-set smartcase                   " ... unless they contain at least one capital letter
+set smartcase                   " unless they contain at least one capital letter
+
+set t_Co=256                        "enable 256 colors
+set cursorline                      "highlight current line
+set colorcolumn=81                  "display text width column
+set background=dark
+colorscheme ron
+hi ColorColumn ctermbg=235
 
 let mapleader = " "
 nnoremap <leader>n :set number! number?<cr>
 nnoremap <leader>l :set list! list?<cr>
 nnoremap <leader>w :set wrap! wrap?<cr>
 nnoremap <leader>s :set spell! spell?<cr>
+nnoremap <leader>p :set paste! paste?<cr>
