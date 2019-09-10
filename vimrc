@@ -28,11 +28,13 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " unless they contain at least one capital letter
 
 set t_Co=256                        "enable 256 colors
-set cursorline                      "highlight current line
 set colorcolumn=81                  "display text width column
 set background=dark
 colorscheme ron
+hi CursorColumn ctermbg=235
 hi ColorColumn ctermbg=235
+hi clear CursorLine
+hi CursorLine ctermbg=235
 
 let mapleader = " "
 nnoremap <leader>n :set number! number?<cr>
@@ -40,3 +42,4 @@ nnoremap <leader>l :set list! list?<cr>
 nnoremap <leader>w :set wrap! wrap?<cr>
 nnoremap <leader>s :set spell! spell?<cr>
 nnoremap <leader>p :set paste! paste?<cr>
+nnoremap <Leader>c :set cursorcolumn! cursorline!<CR>
