@@ -12,9 +12,12 @@ filetype plugin indent on       " load file type plugins + indentation
 
 "" Whitespace
 set nowrap                      " don't wrap lines
-set tabstop=2 shiftwidth=2      " a tab is two spaces
+set tabstop=2                   " a tab is two spaces
+set shiftwidth=2
 set expandtab                   " use spaces, not tabs (optional)
+
 set backspace=indent,eol,start  " backspace through everything in insert mode
+set ruler
 if has("patch-7.4.710")
   set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 else
@@ -36,10 +39,33 @@ hi ColorColumn ctermbg=235
 hi clear CursorLine
 hi CursorLine ctermbg=235
 
+"" Unwanted whitespaces
+highlight ExtraWhitespace ctermbg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+"" Zoom / Restore window.
+function! s:ZoomToggle() abort
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+
 let mapleader = " "
 nnoremap <leader>n :set number! number?<cr>
 nnoremap <leader>l :set list! list?<cr>
 nnoremap <leader>w :set wrap! wrap?<cr>
 nnoremap <leader>s :set spell! spell?<cr>
 nnoremap <leader>p :set paste! paste?<cr>
-nnoremap <Leader>c :set cursorcolumn! cursorline!<CR>
+nnoremap <leader>c :set cursorcolumn! cursorline!<CR>
+nnoremap <leader>z :ZoomToggle<CR>
